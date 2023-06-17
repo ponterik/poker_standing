@@ -1,25 +1,34 @@
-with scores as (
-    select *
-    from {{ ref('scores') }}
+WITH scores AS (
+    SELECT
+        *
+    FROM
+        {{ ref('scores') }}
 ),
-
-tot_nr_players as (
-    select event, count(event) as nr_players
-    from {{ ref('scores') }}
-    group by event
+tot_nr_players AS (
+    SELECT
+        event,
+        COUNT(event) AS nr_players
+    FROM
+        scores
+    GROUP BY
+        event
 ),
-
-final as (
-    select 
+FINAL AS (
+    SELECT
         tot_nr_players.nr_players,
         scores.event,
         placement,
-        INITCAP(LOWER(scores.player)) as player,
+        INITCAP(LOWER(scores.player)) AS player,
         buyins,
-        tot_nr_players.nr_players - placement - (buyins/4) + 1 as points
-    from scores
-    left join tot_nr_players on
-        tot_nr_players.event = scores.event
+        tot_nr_players.nr_players - placement - (
+            buyins / 4
+        ) + 1 AS points
+    FROM
+        scores
+        LEFT JOIN tot_nr_players
+        ON tot_nr_players.event = scores.event
 )
-
-select * from final
+SELECT
+    *
+FROM
+    FINAL
