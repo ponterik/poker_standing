@@ -8,8 +8,8 @@ summed_points AS (
     SELECT
         player,
         SUM(points) AS points,
-        ROUND(AVG(placement), 2) as avg_placement,
-        COUNT(*) as nr_participated
+        ROUND(AVG(placement), 2) AS avg_placement,
+        COUNT(*) AS nr_participated
     FROM
         scores
     GROUP BY

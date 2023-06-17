@@ -2,20 +2,35 @@
 version: 2
 
 models:
-  - name: my_first_dbt_model
-    description: "A starter dbt model"
+  - name: enhanced_score
+    description: "Contains the original data but enhanced and cleaned"
     columns:
-      - name: id
-        description: "The primary key for this table"
-        tests:
-          - unique
-          - not_null
+      - name: nr_players
+        description: "The total number of players for that specific play"
+      - name: event
+        description: "The name of the event"
+      - name: placement
+        description: "The placement of the player"
+      - name: player
+        description: "The name of the player"
+      - name: buyins
+        description: "The number of buyins for that round"
+      - name: points
+        description: "The number of points for that event for the player"
+      
+      
 
-  - name: my_second_dbt_model
-    description: "A starter dbt model"
+  - name: standings
+    description: "Contains the standings for the pokerliga"
     columns:
-      - name: id
-        description: "The primary key for this table"
+      - name: player
+        description: "The name of a player"
         tests:
           - unique
           - not_null
+      - name: avg_placement
+        description: "The average placement of a player over all rounds"
+      - name: nr_participated
+        description: "The number of participations by the player"
+      - name: points
+        description: "The number of points of the player"
