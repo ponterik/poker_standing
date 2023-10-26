@@ -5,8 +5,12 @@ env:
   DBT_BIGQUERY_TOKEN: ${{ secrets.DBT_BIGQUERY_TOKEN }}
 
 jobs:
-  - name: dbt-action
-    uses: mwhitaker/dbt-action@master
-    with:
-      dbt_command: "dbt run --profiles-dir ."
-      dbt_project_folder: "poker_ligan"
+  action:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: dbt-action
+        uses: mwhitaker/dbt-action@master
+        with:
+          dbt_command: "dbt run --profiles-dir ."
+          dbt_project_folder: "poker_ligan"
