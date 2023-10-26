@@ -13,4 +13,4 @@ jobs:
         uses: mwhitaker/dbt-action@master
         with:
           dbt_command: "dbt run --profiles-dir ."
-          dbt_project_folder: "poker_ligan"
+          dbt_project_folder: "../../poker_ligan"
